@@ -1,4 +1,6 @@
 # aca_chemprop
+pki for a given molecule measures how well it binds to a specific receptor (For the specific dataset target is the Glucocorticoid receptor) and this moecule ace benchmark is trying to predict pki for any given molecule for a specfic receptor, with aca molecule (pairs) included in the dataset. the actual goal though is to ensur eour model is able to predict different/not simlar values for those aca pairs for the metric pki (who is not as important for our benchmakr, its just a metirc they chose)
+However, it's worth noting that the MoleculeACE benchmark contains 30 different datasets (which you printed out earlier, like CHEMBL4203_Ki, CHEMBL287_Ki, etc.). Each of these corresponds to a different protein target or receptor. The benchmark tests if a model can handle activity cliffs across a wide variety of biological targets, not just one.
 
 Cliff data: (small so i made dorpout range 0.1-0.6 to avoid overftting and also decreased hidden size search range, max is 300 because chemprops default hidden size is 300. a hidden size too big aka too many entires per hidden state (hidden state is a vector) will overfit
 Full Data - Train: 508, Val: 90, Test: 152
@@ -44,10 +46,10 @@ Because Chemprop is built entirely on PyTorch, all of its graph convolution laye
 model is still overfitting and hsoudlve stopped around epoch 11, how to make it do so since patience for dome reason didnt work
 The reason the patience parameter didn't stop the training is likely due to micro-improvements. By default, PyTorch Lightning resets the early stopping patience counter even if the validation loss improves by a microscopic amount (like 0.00001). If the validation loss plateaus and just jitters slightly downwards, it won't trigger the stop.
 
-We can fix this by introducing a min_delta parameter. This tells the early stopping mechanism: "If the loss doesn't improve by at least this much, consider it no improvement at all."
+We can fix this by introducing a min_delta parameter. This tells the early stopping mechanism: "If the loss doesn't improve by at least this much, consider it no improvement at all." without a min delta, itll only stop if you improve by less than 0 (which is impossible unless you literally do worse. it wont actually stop you from continuing if the improvements are minimal, only if you worsen). However, patience will be halted by micro improvements because patience counter RESETS any time we improve more than min_delta. so you could stagnate, improve a bit (some amount above min_delta), stagnate, then improve enough and just keep going because patience counts CONSECUTIVE non-imporvements (aka improvements < min_delta)
 
   checkpoint = ModelCheckpoint(monitor="val_loss", mode="min", save_top_k=1) (saves best val loss one so its ok if we go beyond a few epochs, itll still report metrics for this and save the params from those)
-
+patience
 
 q: strangely between runs despite having same hyperparams and same seed why is the perofmance diffferent
 a: This is a very common issue when training Neural Networks (especially Graph Neural Networks) on GPUs.
