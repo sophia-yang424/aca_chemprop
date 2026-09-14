@@ -57,4 +57,5 @@ a: This is a very common issue when training Neural Networks (especially Graph N
 Even though you used pl.seed_everything(42), PyTorch operations on the GPU are non-deterministic by default. Graph Neural Networks rely heavily on "scatter" and "aggregate" operations to pass messages between atoms. On a GPU, these operations use parallel threads that finish in an unpredictable order. Because of how floating-point math works, adding numbers in different orders produces tiny numerical differences. Over many epochs, these tiny differences compound, leading to different final metrics.
 
 To enforce strict reproducibility, PyTorch Lightning requires passing deterministic=True to the Trainer. I've updated the training function to include this flag
+deterministic=True  # Forces deterministic GPU operations, its a paramter in the pytorch trainer
 
