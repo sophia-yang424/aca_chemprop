@@ -59,6 +59,7 @@ Even though you used pl.seed_everything(42), PyTorch operations on the GPU are n
 
 To enforce strict reproducibility, PyTorch Lightning requires passing deterministic=True to the Trainer. I've updated the training function to include this flag
 
+for overfitting (mild cases) the solution to just take the earlier epoch where val performed best, dont need to tune hyperperamaters unless gap between train and val final loss is drastic/ severe
 
 separate optuna searcher objects (for diff search ranges) for the diff datasets (for exaple for the full ds, i chose lower range for dropout since the dataset wasnt as small as the ac only whod be very vulnerable to overfitting) but SAME trainer object for after we got optimal hyperparams from optuna and we train an actual persistent model (one for each ds to eval)
 deterministic=True  # Forces deterministic GPU operations, its a paramter in the pytorch trainer
@@ -79,4 +80,6 @@ Test MSE:      0.5676
 Test RMSE:     0.7534
 Test MAE:      0.5899
 <img width="1002" height="647" alt="image" src="https://github.com/user-attachments/assets/5866cc74-aa54-410f-b423-9b1d77bda468" />
+summary:
+<img width="957" height="267" alt="image" src="https://github.com/user-attachments/assets/b1510f9c-611d-44fe-95e0-3b692bcb8639" />
 
