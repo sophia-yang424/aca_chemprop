@@ -62,12 +62,13 @@ To enforce strict reproducibility, PyTorch Lightning requires passing determinis
 
 separate optuna searcher objects (for diff search ranges) for the diff datasets (for exaple for the full ds, i chose lower range for dropout since the dataset wasnt as small as the ac only whod be very vulnerable to overfitting) but SAME trainer object for after we got optimal hyperparams from optuna and we train an actual persistent model (one for each ds to eval)
 deterministic=True  # Forces deterministic GPU operations, its a paramter in the pytorch trainer
-
+------------------------------------------
 underfitting of baseline (no loss mods) for non cliff cases:
 <img width="997" height="597" alt="image" src="https://github.com/user-attachments/assets/e8aca705-bac3-408e-ac5a-f0e2cf287f9f" />
 something like this is obvious underiftting. but could you have it so where the training loss curve shape was same but we shift it higher? how would we know thats not ideal and not just bad data -> compare against a baseline of r^2 = 0 ( a dummy model who outputs only mean label across all data) and results from other hyperparamter choices
 <img width="971" height="592" alt="image" src="https://github.com/user-attachments/assets/600cbd15-c71e-4cbb-bda7-d3be87aae10e" />
 fix for underfitting: DECREASED lb of max_lr search range (to allow lower max_lr, youd think higher lr is better for underfitting, but pytorch uses noam training schedule so its a bit different. after decreasing the lower bound by about a factor of 10^1, it performed much better:
+Performance for non cliff only, on baseline chemprop (no mods on loss function):
 === Best Hyperparameters for Non-Activity Cliff Compounds ===
 Loaded Best Model Checkpoint from Epoch: 19 (Val Loss: 0.4968)
 {'hidden_size': 179, 'depth': 3, 'dropout': 0.14325763295083002, 'init_lr': 1.0391097111495258e-05, 'max_lr': 0.0005189506922300196}
