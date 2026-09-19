@@ -82,4 +82,14 @@ Test MAE:      0.5899
 <img width="1002" height="647" alt="image" src="https://github.com/user-attachments/assets/5866cc74-aa54-410f-b423-9b1d77bda468" />
 summary:
 <img width="957" height="267" alt="image" src="https://github.com/user-attachments/assets/b1510f9c-611d-44fe-95e0-3b692bcb8639" />
+---------------------------
+
+SCAFFOLD SPLIT:
+-used normAggregration for readout of bond states to become atom state bc chemprop did that in thier paper, I tried both meanagg and normaagg, the latter overfitted singifcalty less, so i used normAgg
+FULL:
+{'hidden_size': 258, 'dropout': 0.22555059317379023, 'weight_decay': 0.023331290055857542, 'init_lr': 0.0001655089689318985, 'max_lr': 0.0005916614183632717, 'depth': 4}
+Using Aggregation: NormAggregation
+Mean Test R²: 0.3590 ± 0.0273
+<img width="962" height="452" alt="image" src="https://github.com/user-attachments/assets/14058fd0-ef16-4e6b-8614-4879963c431f" />
+
 
