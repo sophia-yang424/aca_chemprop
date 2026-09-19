@@ -91,9 +91,12 @@ Using NormAggregation <br>
 {'hidden_size': 258, 'dropout': 0.22555059317379023, 'weight_decay': 0.023331290055857542, 'init_lr': 0.0001655089689318985, 'max_lr': 0.0005916614183632717, 'depth': 4} <br>
 Mean Test R²: 0.3590 ± 0.0273 <br>
 <img width="962" height="452" alt="image" src="https://github.com/user-attachments/assets/14058fd0-ef16-4e6b-8614-4879963c431f" /> <br>
+<img width="1342" height="247" alt="image" src="https://github.com/user-attachments/assets/1e4b7e67-1210-4ea7-b364-f3fcbb1120a8" />
+
 <br>
 Using MeanAggregation: <br>
 {'hidden_size': 255, 'dropout': 0.36643527899795536, 'weight_decay': 0.012402254280791959, 'init_lr': 0.0001158163016107133, 'max_lr': 0.00024429887170090807, 'depth': 4} <br>
 Mean Test R^2: 0.2844 ± 0.0315 <br>
 <img width="1047" height="462" alt="image" src="https://github.com/user-attachments/assets/2cd6fb54-5113-48ad-b1e7-7b521c2441b5" /> <br>
 
+<img width="1440" height="372" alt="image" src="https://github.com/user-attachments/assets/4c52901e-67f5-45de-83f6-6698427b6073" />
